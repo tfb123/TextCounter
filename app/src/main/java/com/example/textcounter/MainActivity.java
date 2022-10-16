@@ -2,6 +2,7 @@ package com.example.textcounter;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import utils.TextCounter;
 
@@ -45,13 +47,22 @@ public class MainActivity extends AppCompatActivity {
                 //
             }
             else{
-                String charsCount = getCharsCount(userInputText);
+                String charsCount = getCharsCount(userInputText, getApplicationContext());
                 this.tvMain.setText(charsCount);
             }
 
         }
     }
-    public static String getCharsCount(String input){
-        return String.valueOf(input.length());
+    public static String getCharsCount(String input, Context context){
+        if(String.valueOf(input.length()) == null || String.valueOf(input.length()).isEmpty())
+        {
+            Toast.makeText(context.getApplicationContext(), "The field is empty", Toast.LENGTH_LONG).show();
+            return "0";
+        }
+        else
+        {
+            return String.valueOf(input.length());
+        }
+
     }
 }
