@@ -3,6 +3,7 @@ package com.example.textcounter;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -35,8 +36,22 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onBtnCountClick(View view) {
-        if(this.spSelectionOptions.getSelectedItem().toString().equals(getResources().getString(R.string.chars_selection))){
-            this.tvMain.setText(TextCounter.getCharsCount(this.edPhrase.getText().toString()));
+        String selectedOption = this.spSelectionOptions.getSelectedItem().toString();
+        String defaultCharsSelectedOption = getResources().getString(R.string.chars_selection);
+
+        if(selectedOption.equals(defaultCharsSelectedOption)) {
+            String userInputText = this.edPhrase.getText().toString();
+            if (TextUtils.isEmpty(userInputText)){
+                //
+            }
+            else{
+                String charsCount = getCharsCount(userInputText);
+                this.tvMain.setText(charsCount);
+            }
+
         }
+    }
+    public static String getCharsCount(String input){
+        return String.valueOf(input.length());
     }
 }
