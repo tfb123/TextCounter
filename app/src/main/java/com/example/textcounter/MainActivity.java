@@ -47,16 +47,16 @@ public class MainActivity extends AppCompatActivity {
                 //
             }
             else{
-                String charsCount = getCharsCount(userInputText, getApplicationContext());
+                String charsCount = getCharsCount(userInputText);
                 this.tvMain.setText(charsCount);
             }
 
         }
     }
-    public static String getCharsCount(String input, Context context){
+    public static String getCharsCount(String input){
         if(String.valueOf(input.length()) == null || String.valueOf(input.length()).isEmpty())
         {
-            Toast.makeText(context.getApplicationContext(), "The field is empty", Toast.LENGTH_LONG).show();
+            //Toast.makeText(context.getApplicationContext(), "The field is empty", Toast.LENGTH_LONG).show();
             return "0";
         }
         else
